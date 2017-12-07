@@ -127,15 +127,18 @@ public class AudioHandler extends CordovaPlugin {
             this.resumeRecordingAudio(args.getString(0));
         }
         else if (action.equals("startPlayingAudio")) {
-            String target = args.getString(1);
-            String fileUriStr;
-            try {
+            AudioManager audiMgr = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
+            if( !audiMgr.isMusicActive() ) {
+              String target = args.getString(1);
+              String fileUriStr;
+              try {
                 Uri targetUri = resourceApi.remapUri(Uri.parse(target));
                 fileUriStr = targetUri.toString();
-            } catch (IllegalArgumentException e) {
+              } catch (IllegalArgumentException e) {
                 fileUriStr = target;
+              }
+              this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr));
             }
-            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr));
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
