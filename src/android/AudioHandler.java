@@ -127,18 +127,15 @@ public class AudioHandler extends CordovaPlugin {
             this.resumeRecordingAudio(args.getString(0));
         }
         else if (action.equals("startPlayingAudio")) {
-            AudioManager audiMgr = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
-            if( !audiMgr.isMusicActive() ) {
-              String target = args.getString(1);
-              String fileUriStr;
-              try {
+            String target = args.getString(1);
+            String fileUriStr;
+            try {
                 Uri targetUri = resourceApi.remapUri(Uri.parse(target));
                 fileUriStr = targetUri.toString();
-              } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 fileUriStr = target;
-              }
-              this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr));
             }
+            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr));
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
@@ -154,6 +151,10 @@ public class AudioHandler extends CordovaPlugin {
            } catch (NumberFormatException nfe) {
                //no-op
            }
+        } else if (action.equals("isSystemAudioPlaying")) {
+            AudioManager audiMgr = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
+            callbackContext.sendPluginResult(new PluginResult(status, audiMgr.isMusicActive()));
+            return true;
         } else if (action.equals("getCurrentPositionAudio")) {
             float f = this.getCurrentPositionAudio(args.getString(0));
             callbackContext.sendPluginResult(new PluginResult(status, f));
