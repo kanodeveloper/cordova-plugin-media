@@ -350,7 +350,7 @@
                     bPlayAudioWhenScreenIsLocked = [playAudioWhenScreenIsLocked boolValue];
                 }
 
-                NSString* sessionCategory = bPlayAudioWhenScreenIsLocked ? AVAudioSessionCategoryPlayback : AVAudioSessionCategorySoloAmbient;
+                NSString* sessionCategory = AVAudioSessionCategoryAmbient; //bPlayAudioWhenScreenIsLocked ? AVAudioSessionCategoryPlayback : AVAudioSessionCategorySoloAmbient;
                 [self.avSession setCategory:sessionCategory error:&err];
                 if (![self.avSession setActive:YES error:&err]) {
                     // other audio with higher priority that does not allow mixing could cause this to fail
@@ -439,7 +439,12 @@
     // create the player
     NSURL* resourceURL = audioFile.resourceURL;
 
-    if ([resourceURL isFileURL]) {
+    BOOL isOtherAudioPlaying = NO;
+    if ([self hasAudioSession]) {
+        isOtherAudioPlaying = [self.avSession secondaryAudioShouldBeSilencedHint];
+    }
+    
+    if ([resourceURL isFileURL] && !isOtherAudioPlaying) {
         audioFile.player = [[CDVAudioPlayer alloc] initWithContentsOfURL:resourceURL error:&playerError];
     } else {
         /*
@@ -796,7 +801,7 @@
             [self createMediaErrorWithCode:MEDIA_ERR_DECODE message:nil]];
     }
     if (self.avSession) {
-        [self.avSession setActive:NO error:nil];
+        //[self.avSession setActive:NO error:nil];
     }
 }
 
