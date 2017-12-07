@@ -516,7 +516,9 @@
 
 - (void)isSystemAudioPlaying:(CDVInvokedUrlCommand*)command
 {
+    NSString* callbackId = command.callbackId;
     BOOL isSystemAudioPlaying = NO;
+
     if ([self hasAudioSession]) {
         isSystemAudioPlaying = [self.avSession secondaryAudioShouldBeSilencedHint];
     }
