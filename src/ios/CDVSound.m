@@ -936,7 +936,7 @@
             param=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         }
         NSString* jsString = [NSString stringWithFormat:@"%@(\"%@\",%d,%@);",
-              @"cordova.require('cordova-plugin-media.Media').onStatus", 
+              @"cordova.require('cordova-plugin-media-ka.Media').onStatus", 
               mediaId, (int)what, param];
         [self.commandDelegate evalJs:jsString];
     }
