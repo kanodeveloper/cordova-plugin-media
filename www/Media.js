@@ -1,4 +1,3 @@
-cordova.define("cordova-plugin-media-ka.Media", function(require, exports, module) {
     /*
      *
      * Licensed to the Apache Software Foundation (ASF) under one
@@ -263,5 +262,3 @@ cordova.define("cordova-plugin-media-ka.Media", function(require, exports, modul
             channel.initializationComplete('onMediaPluginReady');
         });
     }
-
-    });
