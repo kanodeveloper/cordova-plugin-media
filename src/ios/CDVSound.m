@@ -342,7 +342,15 @@
 
             // audioFile.player != nil  or player was successfully created
             // get the audioSession and set the category to allow Playing when device is locked or ring/silent switch engaged
-            if ([self hasAudioSession]) {
+
+            BOOL bHasAudioSession = NO;
+
+            @try {
+                bHasAudioSession = [self hasAudioSession];
+            } @catch (NSException *e) {
+                bHasAudioSession = NO;
+            }
+            if (bHasAudioSession) {
                 NSError* __autoreleasing err = nil;
                 NSNumber* playAudioWhenScreenIsLocked = [options objectForKey:@"playAudioWhenScreenIsLocked"];
                 BOOL bPlayAudioWhenScreenIsLocked = YES;
