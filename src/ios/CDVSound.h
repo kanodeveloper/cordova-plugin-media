@@ -48,51 +48,51 @@ enum CDVMediaMsg {
 typedef NSUInteger CDVMediaMsg;
 
 @interface CDVAudioPlayer : AVAudioPlayer
-{
-    NSString* mediaId;
-}
-@property (nonatomic, copy) NSString* mediaId;
-@end
+    {
+        NSString* mediaId;
+    }
+    @property (nonatomic, copy) NSString* mediaId;
+    @end
 
 @interface CDVAudioRecorder : AVAudioRecorder
-{
-    NSString* mediaId;
-}
-@property (nonatomic, copy) NSString* mediaId;
-@end
+    {
+        NSString* mediaId;
+    }
+    @property (nonatomic, copy) NSString* mediaId;
+    @end
 
 @interface CDVAudioFile : NSObject
-{
-    NSString* resourcePath;
-    NSURL* resourceURL;
-    CDVAudioPlayer* player;
-    CDVAudioRecorder* recorder;
-    NSNumber* volume;
-    NSNumber* rate;
-}
+    {
+        NSString* resourcePath;
+        NSURL* resourceURL;
+        CDVAudioPlayer* player;
+        CDVAudioRecorder* recorder;
+        NSNumber* volume;
+        NSNumber* rate;
+    }
 
-@property (nonatomic, strong) NSString* resourcePath;
-@property (nonatomic, strong) NSURL* resourceURL;
-@property (nonatomic, strong) CDVAudioPlayer* player;
-@property (nonatomic, strong) NSNumber* volume;
-@property (nonatomic, strong) NSNumber* rate;
+    @property (nonatomic, strong) NSString* resourcePath;
+    @property (nonatomic, strong) NSURL* resourceURL;
+    @property (nonatomic, strong) CDVAudioPlayer* player;
+    @property (nonatomic, strong) NSNumber* volume;
+    @property (nonatomic, strong) NSNumber* rate;
 
-@property (nonatomic, strong) CDVAudioRecorder* recorder;
+    @property (nonatomic, strong) CDVAudioRecorder* recorder;
 
-@end
+    @end
 
 @interface CDVSound : CDVPlugin <AVAudioPlayerDelegate, AVAudioRecorderDelegate>
-{
-    NSMutableDictionary* soundCache;
-    NSString* currMediaId;
-    AVAudioSession* avSession;
-    AVPlayer* avPlayer;
-    NSString* statusCallbackId;
-}
-@property (nonatomic, strong) NSMutableDictionary* soundCache;
-@property (nonatomic, strong) AVAudioSession* avSession;
-@property (nonatomic, strong) NSString* currMediaId;
-@property (nonatomic, strong) NSString* statusCallbackId;
+    {
+        NSMutableDictionary* soundCache;
+        NSString* currMediaId;
+        AVAudioSession* avSession;
+        AVPlayer* avPlayer;
+        NSString* statusCallbackId;
+    }
+    @property (nonatomic, strong) NSMutableDictionary* soundCache;
+    @property (nonatomic, strong) AVAudioSession* avSession;
+    @property (nonatomic, strong) NSString* currMediaId;
+    @property (nonatomic, strong) NSString* statusCallbackId;
 
 - (void)startPlayingAudio:(CDVInvokedUrlCommand*)command;
 - (void)pausePlayingAudio:(CDVInvokedUrlCommand*)command;
@@ -106,7 +106,7 @@ typedef NSUInteger CDVMediaMsg;
 
 - (BOOL)hasAudioSession;
 
-// helper methods
+    // helper methods
 - (NSURL*)urlForRecording:(NSString*)resourcePath;
 - (NSURL*)urlForPlaying:(NSString*)resourcePath;
 
@@ -122,4 +122,4 @@ typedef NSUInteger CDVMediaMsg;
 - (void)setVolume:(CDVInvokedUrlCommand*)command;
 - (void)setRate:(CDVInvokedUrlCommand*)command;
 
-@end
+    @end
