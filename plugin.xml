@@ -21,7 +21,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
 id="cordova-plugin-media-ka"
-    version="1.0.8">
+    version="1.0.9">
 
     <name>Media</name>
     <description>Cordova Media Plugin</description>
@@ -33,8 +33,6 @@ id="cordova-plugin-media-ka"
     <engines>
         <engine name="cordova-android" version=">=6.3.0" />
     </engines>
-
-    <dependency id="cordova-plugin-file" version="^6.0.0" />
 
     <js-module src="www/MediaError.js" name="MediaError">
         <clobbers target="window.MediaError" />
