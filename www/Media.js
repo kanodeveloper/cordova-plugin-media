@@ -47,6 +47,7 @@
         this.statusCallback = statusCallback;
         this._duration = -1;
         this._position = -1;
+        this.playing = false;
         exec(null, this.errorCallback, "Media", "create", [this.id, this.src]);
     };
 
@@ -69,10 +70,15 @@
         return mediaObjects[id];
     };
 
+    Media.prototype.isPlaying = function() {
+        return this.playing;
+    }
+
     /**
      * Start or resume playing audio file.
      */
     Media.prototype.play = function(options) {
+        this.playing = true;
         exec(null, null, "Media", "startPlayingAudio", [this.id, this.src, options]);
     };
 
@@ -212,6 +218,7 @@
                         media.statusCallback(value);
                     }
                     if (value == Media.MEDIA_STOPPED) {
+                        media.playing = false;
                         if (media.successCallback) {
                             media.successCallback();
                         }
