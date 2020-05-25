@@ -424,8 +424,8 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
                         duration = round(audioFile.player.duration * 1000) / 1000;
                     }
 
-                    [self onStatus:MEDIA_DURATION mediaId:mediaId param:@(duration)];
-                    [self onStatus:MEDIA_STATE mediaId:mediaId param:@(MEDIA_RUNNING)];
+                    [audioFile.player play];
+                    duration = round(audioFile.player.duration * 1000) / 1000;
                 }
             }
             if (bError) {
