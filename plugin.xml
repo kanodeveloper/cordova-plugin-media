@@ -21,7 +21,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-media-ka"
-    version="5.0.4">
+    version="5.0.5">
 
     <name>Media</name>
     <description>Cordova Media Plugin</description>
@@ -50,13 +50,6 @@
             <feature name="Media" >
                 <param name="android-package" value="org.apache.cordova.media.AudioHandler"/>
             </feature>
-        </config-file>
-
-        <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.RECORD_AUDIO" />
-            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
         </config-file>
 
         <source-file src="src/android/AudioHandler.java" target-dir="src/org/apache/cordova/media" />
